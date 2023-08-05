@@ -15,7 +15,9 @@
         android:id="@+id/fragment_main_stop_watcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.myapplication.MainFragment"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main"
+    />
+
+
 
 </LinearLayout>
