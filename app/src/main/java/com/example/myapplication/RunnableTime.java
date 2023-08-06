@@ -12,19 +12,14 @@ public class RunnableTime implements Runnable{
         this.listener = listener;
         this.activity = activity;
     }
-
     @Override
     public void run() {
-
         long endTime = System.currentTimeMillis();
         millisecond = endTime - startTime;
         int hours =(int) millisecond/3600000;
         int minutes =(int) (millisecond/3600000)/60;
         int second =(int) (millisecond/1000)%60;
-
-
         @SuppressLint("DefaultLocale") String time = String.format("%d:%02d:%02d:%02d",hours,minutes,second,millisecond % 100);
-
         try {
             Thread.sleep(60);
         } catch (InterruptedException e) {
@@ -32,19 +27,13 @@ public class RunnableTime implements Runnable{
         }
 
         activity.runOnUiThread(() -> listener.displayTime(time,millisecond));
-        if (timeRunning){
-            run();
-        }
+        if (timeRunning) run();
     }
-
     public void setTimeRunning(boolean b){
-        timeRunning = b;
+        this.timeRunning = b;
     }
-
-
     public void setStartTime(long startTime){
             this.startTime = startTime;
-
     }
 
 }
