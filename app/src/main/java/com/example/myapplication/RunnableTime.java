@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.util.Log;
+
 public class RunnableTime implements Runnable{
     private final DisplayTime listener;
     private long millisecond =0;
@@ -27,7 +29,9 @@ public class RunnableTime implements Runnable{
         }
 
         activity.runOnUiThread(() -> listener.displayTime(time,millisecond));
-        if (timeRunning) run();
+        if (timeRunning){
+            run();
+        }
     }
     public void setTimeRunning(boolean b){
         this.timeRunning = b;
