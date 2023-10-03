@@ -1,26 +1,35 @@
 package com.example.myapplication;
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MainFragment extends Fragment implements View.OnClickListener,DisplayTime {
-     private TextView textViewStopWatcher;
-     private Button startButton,stopButton,resetButton;
+    private TextView textViewStopWatcher;private Button startButton,stopButton,resetButton;
     private boolean stopWatcherWasActive, isRunning;
-     private RunnableTime runnableTime;
+    private RunnableTime runnableTime;
     private ExecutorService service;
     private String timeString;
     private long millisecond;
+    private WeakReference<Activity> weekActivity;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        weekActivity = new WeakReference<>(getActivity());
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,14 +89,14 @@ public class MainFragment extends Fragment implements View.OnClickListener,Displ
     private void stopOnClick(){
         if (isRunning){
             isRunning = false;
-            runnableTime.setTimeRunning(isRunning);
+            runnableTime.setTimeRunning(false);
         }
     }
 
     private void restartOnClick(){
         if (!isRunning){
             stopWatcherWasActive = false;
-            textViewStopWatcher.setText("Reset");
+            textViewStopWatcher.setText(getString(R.string.displayTime));
             runnableTime.setTimeRunning(false);
         }
     }
@@ -117,7 +126,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,Displ
         startButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
         resetButton.setOnClickListener(this);
-        runnableTime = new RunnableTime(this,getActivity());
+        runnableTime = new RunnableTime(this,weekActivity);
         service = Executors.newSingleThreadExecutor();
     }
 }
