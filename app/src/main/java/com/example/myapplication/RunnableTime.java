@@ -17,12 +17,6 @@ public class RunnableTime implements Runnable{
     }
     @Override
     public void run() {
-//        long endTime = System.currentTimeMillis();
-//        millisecond = endTime - startTime;
-//        int hours =(int) millisecond/3600000;
-//        int minutes =(int) (millisecond/ 60000);
-//        int second =(int) (millisecond/1000)%60;
-//        @SuppressLint("DefaultLocale") String time = String.format("%d:%02d:%02d:%02d",hours,minutes,second,millisecond % 100);
         long endTime = System.currentTimeMillis();
         millisecond = endTime - startTime;
         int hours = (int) millisecond / 3600000;
