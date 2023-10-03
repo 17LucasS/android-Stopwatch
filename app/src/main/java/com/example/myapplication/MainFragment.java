@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MainFragment extends Fragment implements View.OnClickListener,DisplayTime {
-    private TextView textViewStopWatcher;private Button startButton,stopButton,resetButton;
+    private TextView textViewStopWatcher;
+    private Button startButton,stopButton,resetButton;
     private boolean stopWatcherWasActive, isRunning;
     private RunnableTime runnableTime;
     private ExecutorService service;
@@ -30,7 +30,6 @@ public class MainFragment extends Fragment implements View.OnClickListener,Displ
         super.onAttach(context);
         weekActivity = new WeakReference<>(getActivity());
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

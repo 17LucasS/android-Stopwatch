@@ -19,10 +19,11 @@ public class RunnableTime implements Runnable{
     public void run() {
         long endTime = System.currentTimeMillis();
         millisecond = endTime - startTime;
-        int hours = (int) millisecond / 3600000;
-        int minutes = (int) millisecond / 60000;
-        int seconds = (int) millisecond / 1000;
-        @SuppressLint("DefaultLocale") String time = String.format("%d:%02d:%02d:%03d",hours,minutes,seconds,millisecond%1000);
+        int hours = (int) (millisecond / 3600000);
+        int minutes = (int) ((millisecond % 3600000) / 60000);
+        int seconds = (int) ((millisecond % 60000) / 1000);
+        millisecond = (int) (millisecond % 1000);
+        @SuppressLint("DefaultLocale") String time = String.format("%d:%02d:%02d:%03d",hours,minutes,seconds,millisecond);
         try {
             Thread.sleep(30);
         } catch (InterruptedException e) {
