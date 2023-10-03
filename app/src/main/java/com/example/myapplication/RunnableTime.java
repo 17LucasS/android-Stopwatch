@@ -24,7 +24,7 @@ public class RunnableTime implements Runnable{
         int seconds = (int) millisecond / 1000;
         @SuppressLint("DefaultLocale") String time = String.format("%d:%02d:%02d:%03d",hours,minutes,seconds,millisecond%1000);
         try {
-            Thread.sleep(60);
+            Thread.sleep(30);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
